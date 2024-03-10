@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "65d080d3-f3af-46bb-9e3e-1e5af348fc09",
+		"name": "NextBasket API Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19370817"
+	},
+	"item": [
+		{
+			"name": "API Task",
+			"item": [
+				{
+					"name": "Get Book Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Parameters Returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\", \"name\", \"author\", \"type\", \"price\", \"current-stock\", \"available\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Viscount Who Loved Me\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/books/:bookid",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookid"
+							],
+							"variable": [
+								{
+									"key": "bookid",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book Details - EmptyParams",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Parameters Returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"error\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"No book with id NaN\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/books/:bookid",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookid"
+							],
+							"variable": [
+								{
+									"key": "bookid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book Details - Invalid Value",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Parameters Returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"error\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"No book with id NaN\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/books/:bookid",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookid"
+							],
+							"variable": [
+								{
+									"key": "bookid",
+									"value": "A"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
